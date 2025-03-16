@@ -1,0 +1,63 @@
+import pandas as pd
+import torch
+import esm
+from tqdm import tqdm
+
+# 设置GPU设备（如果可用）
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Using device:", device)
+
+# 加载ESM2模型（以 esm2_t33_650M_UR50D 为例），并将模型移动到GPU
+model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
+model = model.to(device)
+batch_converter = alphabet.get_batch_converter()
+model.eval()  # 切换为评估模式
+
+def compute_batch_embeddings(batch_data, batch_size=32):
+    """
+    批量计算ESM2 embedding。
+    参数：
+      batch_data: [(name, sequence), ...] 的列表，name可以任意，用于标识序列；
+      batch_size: 每批处理的序列数。
+    返回：
+      一个字典，将序列字符串映射到其embedding（列表格式）。
+    """
+    embedding_dict = {}
+    for i in tqdm(range(0, len(batch_data), batch_size), desc="Batch Embedding"):
+        batch = batch_data[i:i+batch_size]
+        labels, strs, tokens = batch_converter(batch)
+        tokens = tokens.to(device)
+        with torch.no_grad():
+            results = model(tokens, repr_layers=[model.num_layers], return_contacts=False)
+        token_representations = results["representations"][model.num_layers]
+        # 对于每个序列，排除首尾特殊token后对token表示求均值，作为全局embedding
+        for j, (name, seq) in enumerate(batch):
+            # 注意：这里简单地平均了所有token表示，实际应用中可考虑mask或其他策略
+            rep = token_representations[j, 1: tokens.size(1)-1].mean(0)
+            embedding_dict[seq] = rep.cpu().numpy().tolist()
+    return embedding_dict
+
+# 1. 读取CSV文件
+df = pd.read_csv("PPI_prediction_dataset_2000_with_seq.csv")
+
+# 2. 收集所有唯一的蛋白序列（seq1和seq2），过滤空字符串
+all_seqs = set(df['seq1'].dropna().tolist() + df['seq2'].dropna().tolist())
+all_seqs = [s for s in all_seqs if s.strip() != ""]
+
+# 3. 构建批处理数据，使用序列本身作为名称（要求名称唯一即可）
+batch_data = [(seq, seq) for seq in all_seqs]
+
+# 4. 批量计算embedding
+embeddings = compute_batch_embeddings(batch_data, batch_size=32)
+
+# 5. 根据生成的embedding字典，为每行数据添加embedding列
+def get_embedding(seq):
+    return embeddings.get(seq, None)
+
+df['embedding1'] = df['seq1'].apply(get_embedding)
+df['embedding2'] = df['seq2'].apply(get_embedding)
+
+# 6. 保存包含embedding的新CSV文件
+df.to_csv("PPI_prediction_dataset_with_esm2_embeddings_batch.csv", index=False)
+
+print("Embedding生成并保存完毕！")
