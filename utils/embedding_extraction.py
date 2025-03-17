@@ -13,7 +13,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device, "with", torch.cuda.device_count(), "GPUs")
 
 # 加载ESM2模型（例如 esm2_t33_650M_UR50D）
-model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
+model, alphabet = esm.pretrained.esm2_t12_35M_UR50D()
 
 # 如果有多个GPU，则使用DataParallel进行并行计算
 if torch.cuda.device_count() > 1:

@@ -48,6 +48,18 @@ def get_sequence(protein_id, seq_dict):
     else:
         return fetch_sequence_from_uniprot(protein_id)
 
+# 新增：对蛋白序列进行截断或填充，确保长度为2048
+def process_sequence(seq, target_len=2048):
+    if len(seq) > target_len:
+        # 取中间的target_len个氨基酸
+        start = (len(seq) - target_len) // 2
+        return seq[start:start+target_len]
+    elif len(seq) < target_len:
+        # 填充"X"到target_len
+        return seq + "X" * (target_len - len(seq))
+    else:
+        return seq
+
 # 设置文件路径
 biogrid_file = './BIOGRID-MV-Physical-4.4.242.tab3.txt'
 fasta_file = './cafa-5-protein-function-prediction/Train/train_sequences.fasta'
@@ -55,7 +67,7 @@ fasta_file = './cafa-5-protein-function-prediction/Train/train_sequences.fasta'
 # 4. 解析CAFA5的FASTA文件，得到蛋白序列字典和蛋白ID列表
 seq_dict = parse_fasta_sequences(fasta_file)
 cafa_proteins = list(seq_dict.keys())
-print("The number of proteins in CAFA5", len(cafa_proteins))
+print("The number of proteins in CAFA5:", len(cafa_proteins))
 
 # 5. 读取BIOGRID文件（制表符分隔，跳过以'#'开头的注释行）
 biogrid_df = pd.read_csv(biogrid_file, sep='\t', header=0)
@@ -75,7 +87,7 @@ for idx, row in biogrid_df.iterrows():
     positive_pairs.add(pair)
 print("Positive sample number in BIOGRID:", len(positive_pairs))
 
-# 8. 设置目标样本数（正负各1000个）
+# 8. 设置目标样本数（正负各5000个）
 target_size = 5000
 if len(positive_pairs) >= target_size:
     positive_pairs_sample = random.sample(list(positive_pairs), target_size)
@@ -92,7 +104,7 @@ def generate_negative_samples(protein_list, positive_pairs_set, sample_size):
     return list(negative_samples)
 
 negative_pairs = generate_negative_samples(cafa_proteins, set(positive_pairs_sample), target_size)
-print("negative sample number:", len(negative_pairs))
+print("Negative sample number:", len(negative_pairs))
 
 # 10. 构建DataFrame，正样本Label=1，负样本Label=0
 positive_df = pd.DataFrame(positive_pairs_sample, columns=['Protein_A', 'Protein_B'])
@@ -101,11 +113,11 @@ negative_df = pd.DataFrame(negative_pairs, columns=['Protein_A', 'Protein_B'])
 negative_df['Label'] = 0
 ppi_dataset = pd.concat([positive_df, negative_df]).sample(frac=1).reset_index(drop=True)
 
-# 11. 添加序列信息：若在本地未找到，则尝试在线获取
-ppi_dataset['seq1'] = ppi_dataset['Protein_A'].apply(lambda x: get_sequence(x, seq_dict))
-ppi_dataset['seq2'] = ppi_dataset['Protein_B'].apply(lambda x: get_sequence(x, seq_dict))
+# 11. 添加序列信息：若在本地未找到，则尝试在线获取，并对序列进行处理（截断/填充至2048）
+ppi_dataset['seq1'] = ppi_dataset['Protein_A'].apply(lambda x: process_sequence(get_sequence(x, seq_dict)))
+ppi_dataset['seq2'] = ppi_dataset['Protein_B'].apply(lambda x: process_sequence(get_sequence(x, seq_dict)))
 
 print(ppi_dataset.head())
 
 # 12. 保存最终数据集到CSV文件
-ppi_dataset.to_csv('PPI_prediction_dataset_2000_with_seq.csv', index=False)
+ppi_dataset.to_csv('./pLM-PPI/data/PPI_prediction_dataset_2000_with_seq.csv', index=False)
