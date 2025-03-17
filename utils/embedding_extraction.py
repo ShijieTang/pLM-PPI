@@ -7,7 +7,7 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
 
-# 加载ESM2模型（以 esm2_t33_650M_UR50D 为例），并将模型移动到GPU
+# 加载ESM2模型（例如 esm2_t33_650M_UR50D）并移动到GPU
 model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
 model = model.to(device)
 batch_converter = alphabet.get_batch_converter()
@@ -17,7 +17,7 @@ def compute_batch_embeddings(batch_data, batch_size=32):
     """
     批量计算ESM2 embedding。
     参数：
-      batch_data: [(name, sequence), ...] 的列表，name可以任意，用于标识序列；
+      batch_data: [(name, sequence), ...] 列表，其中name用于标识序列；
       batch_size: 每批处理的序列数。
     返回：
       一个字典，将序列字符串映射到其embedding（列表格式）。
@@ -30,9 +30,8 @@ def compute_batch_embeddings(batch_data, batch_size=32):
         with torch.no_grad():
             results = model(tokens, repr_layers=[model.num_layers], return_contacts=False)
         token_representations = results["representations"][model.num_layers]
-        # 对于每个序列，排除首尾特殊token后对token表示求均值，作为全局embedding
+        # 对于每个序列，排除首尾特殊token后对token表示求均值作为全局embedding
         for j, (name, seq) in enumerate(batch):
-            # 注意：这里简单地平均了所有token表示，实际应用中可考虑mask或其他策略
             rep = token_representations[j, 1: tokens.size(1)-1].mean(0)
             embedding_dict[seq] = rep.cpu().numpy().tolist()
     return embedding_dict
@@ -40,11 +39,11 @@ def compute_batch_embeddings(batch_data, batch_size=32):
 # 1. 读取CSV文件
 df = pd.read_csv("PPI_prediction_dataset_2000_with_seq.csv")
 
-# 2. 收集所有唯一的蛋白序列（seq1和seq2），过滤空字符串
+# 2. 收集所有唯一的蛋白序列（seq1 和 seq2），过滤空字符串
 all_seqs = set(df['seq1'].dropna().tolist() + df['seq2'].dropna().tolist())
 all_seqs = [s for s in all_seqs if s.strip() != ""]
 
-# 3. 构建批处理数据，使用序列本身作为名称（要求名称唯一即可）
+# 3. 构建批处理数据，使用序列本身作为名称
 batch_data = [(seq, seq) for seq in all_seqs]
 
 # 4. 批量计算embedding
@@ -57,7 +56,7 @@ def get_embedding(seq):
 df['embedding1'] = df['seq1'].apply(get_embedding)
 df['embedding2'] = df['seq2'].apply(get_embedding)
 
-# 6. 保存包含embedding的新CSV文件
-df.to_csv("PPI_prediction_dataset_with_esm2_embeddings_batch.csv", index=False)
+# 6. 保存结果为JSON文件（orient='records' 表示以列表形式存储，每行为一个字典）
+df.to_json("PPI_prediction_dataset_with_esm2_embeddings.json", orient='records', force_ascii=False, indent=2)
 
-print("Embedding生成并保存完毕！")
+print("Embedding generation completed!")
