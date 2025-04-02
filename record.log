@@ -1,0 +1,129 @@
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▂▂▂▃▃▃▄▄▅▅▅▆▆▆▇▇▇██
+wandb: train_accuracy ▁▄▄▅▅▅▆▆▆▆▆▇▇▇▇▇▇▇▇██
+wandb:     train_loss █▆▆▅▅▄▄▄▄▄▃▃▃▂▂▂▂▂▂▁▁
+wandb:   val_accuracy ▁▃▆▅▇▇▇▇▆▆█████▇▇▆▅▇▇
+wandb:       val_loss █▇▅▅▄▄▄▄▃▃▂▂▂▂▂▂▂▁▄▂▁
+wandb: 
+wandb: Run summary:
+wandb:          epoch 20
+wandb: train_accuracy 0.68481
+wandb:     train_loss 0.59421
+wandb:   val_accuracy 0.674
+wandb:       val_loss 0.60615
+wandb: 
+wandb: 🚀 View run positional_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/isud7hhe
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250322_124451-isud7hhe/logs
+[2025-03-22 13:09:51] [INFO] Evaluating model on test set...
+[2025-03-22 13:09:57] [INFO] Test Loss: 0.6436 | Test Acc: 0.6356
+
+
+Onehot
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▁▂▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb: train_accuracy ▁▂▃▅▅▆▇▇▇▇▇█▇████████▇██████████████████
+wandb:     train_loss ███▇▇▇▅▄▃▃▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   val_accuracy ▁▂▅▄▇▅▇▇█▇▇▇███▇█▇██████████████████████
+wandb:       val_loss ███▇▇▆▅▄▃▃▃▂▂▂▂▂▂▂▂▁▁▂▁▁▂▁▂▁▁▂▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:          epoch 54
+wandb: train_accuracy 0.63709
+wandb:     train_loss 0.63832
+wandb:   val_accuracy 0.644
+wandb:       val_loss 0.6346
+wandb: 
+wandb: 🚀 View run onehot_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/m77rd87h
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250322_190036-m77rd87h/logs
+[2025-03-22 21:08:43] [INFO] Evaluating model on test set...
+[2025-03-22 21:09:09] [INFO] Test Loss: 0.6585 | Test Acc: 0.6143
+
+[2025-03-23 00:46:07] [INFO] No improvement in val accuracy for 20 epoch(s).
+[2025-03-23 00:46:07] [INFO] Early stopping triggered at epoch 85.
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb: train_accuracy ▁▃▄▄▄▄▅▅▅▅▆▅▆▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇██▇██████
+wandb:     train_loss █▇▆▆▆▆▅▅▅▅▄▄▄▄▄▄▄▄▃▃▃▃▃▃▂▂▂▂▂▂▂▁▁▂▁▁▁▁▁▁
+wandb:   val_accuracy ▁▅▆▆▅▇▇▆▅▆▅▆▇▆▇▆▅▆▆▆▇▇█▇▅▇▇▇▇▅█▇█▆██▇▇██
+wandb:       val_loss █▆▅▅▅▄▄▄▃▄▄▃▃▄▄▃▄▂▂▄▂▃▂▂▇▃▃▂▂▆▁▂▂▅▂▂▅▂▁▁
+wandb: 
+wandb: Run summary:
+wandb:          epoch 84
+wandb: train_accuracy 0.75296
+wandb:     train_loss 0.50679
+wandb:   val_accuracy 0.69467
+wandb:       val_loss 0.58117
+wandb: 
+wandb: 🚀 View run positional_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/j85y9gbb
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250322_225632-j85y9gbb/logs
+[2025-03-23 00:46:12] [INFO] Evaluating model on test set...
+[2025-03-23 00:46:19] [INFO] Test Loss: 0.6402 | Test Acc: 0.6529
+
+=============== No Bug No Error, Finished!!! ===============
+
+
+# for esm35
+[2025-04-02 14:58:45] [INFO] No improvement in val accuracy for 20 epoch(s).
+[2025-04-02 14:58:45] [INFO] Early stopping triggered at epoch 27.
+wandb:                                                                                
+wandb: W&B sync reduced upload amount by 6.3%             
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██
+wandb: train_accuracy ▁▃▃▄▄▅▅▅▆▆▆▆▆▇▇▇▇▇▇▇███████
+wandb:     train_loss █▇▆▆▅▅▅▄▄▄▄▃▃▃▃▂▂▂▂▂▂▂▁▁▁▁▁
+wandb:   val_accuracy ▁▂▂▄▅▅▆▆▆▃▆▃▆▇▆▇▇▆▇▆▇▇██▆▇▇
+wandb:       val_loss ▅▄▃▂▂▂▁▁▂▆▁▅▂▂▃▂▃▄▄▅▅▄▅▅▇█▇
+wandb: 
+wandb: Run summary:
+wandb:          epoch 26
+wandb: train_accuracy 0.98614
+wandb:     train_loss 0.04583
+wandb:   val_accuracy 0.818
+wandb:       val_loss 0.63291
+wandb: 
+wandb: 🚀 View run esm35_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/q1aesm0p
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250402_145225-q1aesm0p/logs
+[2025-04-02 14:58:53] [INFO] Evaluating model on test set...
+[2025-04-02 14:58:55] [INFO] Test Loss: 0.4241 | Test Acc: 0.8081
+
+=============== No Bug No Error, Finished!!! ===============
+
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▂▂▂▃▃▃▃▄▄▄▅▅▅▆▆▆▆▇▇▇██
+wandb: train_accuracy ▁▃▄▅▆▆▇▇▇███████████████
+wandb:     train_loss █▆▅▅▄▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   val_accuracy ▁▅▅▇▇▆▇▇▆▇▇▇▇▇█▇▇███████
+wandb:       val_loss ▃▂▁▁▁▂▂▃▄▄▄▄▆▅▅▆▇▇▇▇▇███
+wandb: 
+wandb: Run summary:
+wandb:          epoch 23
+wandb: train_accuracy 1.0
+wandb:     train_loss 0.00043
+wandb:   val_accuracy 0.846
+wandb:       val_loss 0.7762
+wandb: 
+wandb: 🚀 View run esm650_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/p4ataq0g
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250402_150500-p4ataq0g/logs
+[2025-04-02 15:11:38] [INFO] Evaluating model on test set...
+[2025-04-02 15:11:41] [INFO] Test Loss: 0.3882 | Test Acc: 0.8175
+
+=============== No Bug No Error, Finished!!! ===============
