@@ -127,3 +127,54 @@ wandb: Find logs at: ./wandb/run-20250402_150500-p4ataq0g/logs
 [2025-04-02 15:11:41] [INFO] Test Loss: 0.3882 | Test Acc: 0.8175
 
 =============== No Bug No Error, Finished!!! ===============
+
+
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb: train_accuracy ▁▃▄▅▅▅▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇████████████
+wandb:     train_loss █▆▅▅▄▄▄▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   val_accuracy ▁▄▅▆▇▇▇▇▇▇▇▇█████████████▇▇█████████████
+wandb:       val_loss █▅▄▄▃▃▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:          epoch 345
+wandb: train_accuracy 0.85312
+wandb:     train_loss 0.35967
+wandb:   val_accuracy 0.78867
+wandb:       val_loss 0.44965
+wandb: 
+wandb: 🚀 View run simple_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/9caudmnm
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250414_213753-9caudmnm/logs
+[2025-04-14 23:06:18] [INFO] Evaluating model on test set...
+[2025-04-14 23:06:20] [INFO] Test Loss: 0.4660 | Test Acc: 0.7795
+
+=============== No Bug No Error, Finished!!! ===============
+
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:          epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb: train_accuracy ▁▃▄▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇█████████████
+wandb:     train_loss █▆▅▄▄▄▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   val_accuracy ▁▄▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇█▇▇▇▇▇▇██████████
+wandb:       val_loss █▅▄▃▃▃▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:          epoch 791
+wandb: train_accuracy 0.79654
+wandb:     train_loss 0.45326
+wandb:   val_accuracy 0.774
+wandb:       val_loss 0.50143
+wandb: 
+wandb: 🚀 View run simple35_bs32_0 at: https://wandb.ai/shijie-zje/CMU_Com_Genetics/runs/3ayvplmc
+wandb: ⭐️ View project at: https://wandb.ai/shijie-zje/CMU_Com_Genetics
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250415_003620-3ayvplmc/logs
+[2025-04-15 05:17:58] [INFO] Evaluating model on test set...
+[2025-04-15 05:18:00] [INFO] Test Loss: 0.5172 | Test Acc: 0.7568
+
+=============== No Bug No Error, Finished!!! ===============

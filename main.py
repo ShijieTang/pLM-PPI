@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 # Import your dataset and models. Adjust paths as needed.
 from utils.PPIDataset import PPIDataset
-from utils.model import MLP, OnehotMLP, PositionalMLP  # Choose your model accordingly
+from utils.model import MLP, OnehotMLP, PositionalMLP, simpleMLP  # Choose your model accordingly
 
 class Trainer:
     def __init__(self, cfg: DictConfig):
@@ -102,6 +102,9 @@ class Trainer:
             self.model = OnehotMLP(cfg_model).to(self.device)
         elif self.cfg.model.model_choice == 'positional':
             self.model = PositionalMLP(cfg_model).to(self.device)
+        elif self.cfg.model.model_choice.startswith('simple'):
+            self.model = simpleMLP(cfg_model).to(self.device)
+            self.cfg.model.baseline = False
         else:
             self.model = MLP(cfg_model).to(self.device)
             self.cfg.model.baseline = False
